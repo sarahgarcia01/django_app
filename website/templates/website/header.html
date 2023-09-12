@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Website</title>
+        <style>
+            .header{
+                margin: 0;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                background-color: #232323;
+                font-display: block;
+                color: #f8f5f2;
+                padding:20px;
+                text-align: center;
+            }
+
+            .search-bar{
+                float:left;
+                margin-left: 10px;
+                margin-right: 10px;
+                margin-top: auto;
+                position: relative;
+                top: 50%;
+                transform: translateY(-120%);
+
+            }
+
+        
+            li{
+                float: right;
+                list-style-type: none;
+                margin-right: 10px;
+                margin-left: 10px;
+                margin-top: auto;
+                position: relative;
+                top: 50%;
+                transform: translateY(-60%);
+            }
+
+            li a{
+                display: inline-block;
+                color: #f8f5f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+
+            }
+
+            li a:hover, .dropdown:hover .dropbtn{
+                background-color: #078080;
+            }
+
+            li.dropdown{
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #078080;
+                min-width: 160px;
+            
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                padding: 12px 16px;
+                text-decoration: none;
+                display:grid;
+                text-align: left;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #f45d48;  
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+           
+           
+        </style>
+    </head>
+
+
+    <body>
+
+        
+        <div class="header">
+            <h1>Website</h1>
+            <p>website description</p>
+           
+
+            <ul>
+                <li><a href="{% url 'homepage' %}">Home</a></li>
+            
+                <li class="dropdown">
+                  <a href="javascript:void(0)" class="dropbtn">Account</a>
+                  <div class="dropdown-content">
+
+                    {% if request.user.is_authenticated %}
+                    <p>Welcome, {{request.user.username}}</p>
+                    <a href="{% url 'logout' %}">Logout</a>
+
+
+                    {% else %}
+                    <p>Not logged in</p>
+                    <a href="{% url 'login' %}">Login</a>
+                    {% endif %}
+
+
+                    <a href="{% url 'register' %}">Register</a>
+                    
+                  </div>
+                </li>
+            </ul>
+    
+
+        </div>
+
+
+            <div class = "search-bar">
+                <form action="/search" method="POST">
+                    <input type="text" name="search" placeholder="Search..">
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+
+
+
+
+       
+
+    </body>
+</html>
+
+
+
+

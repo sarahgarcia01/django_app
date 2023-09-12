@@ -1,0 +1,31 @@
+{% include 'website/header.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+        <style>
+            body{
+                margin: 0;
+                background-color: #f8f5f2;
+                text-align:start;
+                
+
+            }
+        </style>
+    </head>
+
+    <body style ="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+        <h2>Create Account</h2>
+        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+
+    <p>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Register</button>
+        </form>
+    </p>
+    
+</body>
+</html>
+{% include 'website/footer.html' %}

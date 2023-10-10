@@ -8,10 +8,10 @@ class User(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
-    available = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='images/')
+    availability = models.CharField(max_length=255)
 
 class Order(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)

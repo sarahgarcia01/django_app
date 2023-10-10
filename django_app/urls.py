@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from website import views
 from website.views import index
-
+from django.conf.urls.static import static 
 from django.conf import settings
 
 urlpatterns = [
@@ -29,5 +29,6 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 

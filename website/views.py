@@ -8,8 +8,7 @@ from django.contrib.auth import logout as auth_logout
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
-
-
+from .models import Product, Order
 from django.contrib.auth.decorators import login_required
 
 
@@ -23,7 +22,8 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    return render(request, 'website/index.html')
+    products = Product.objects.all()
+    return render(request, 'website/index.html', {'products': products})
 
 
 

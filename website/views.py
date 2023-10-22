@@ -10,21 +10,11 @@ from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from .models import Product, Order
 from django.contrib.auth.decorators import login_required
-
-
-
-
-
-
-
-
-
-
+from .forms import SearchForm
 
 def index(request):
     products = Product.objects.all()
     return render(request, 'website/index.html', {'products': products})
-
 
 
 def register(request):
@@ -51,3 +41,12 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('index')
+
+def search_view(request):
+    form = SearchForm(request.GET)
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        results = Product.objects.filter(name__icontains=query)
+    else:
+        results = []
+    return render(request, 'search_results.html', {'form': form, 'results': results})

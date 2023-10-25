@@ -1,0 +1,91 @@
+{% include 'website/header.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Header</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f8f5f2;
+        }
+
+        .products{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 20px;
+            margin-top: 20px;
+        }
+
+        .product-card{
+            background-attachment: fixed;
+            background-color: #f8f5f2;
+            text-align: center;
+            padding: 20px;
+            margin: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .product-image{
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border: 1px solid #f8f5f2;
+        }
+
+        .product-description{
+            text-align: left;
+        }
+
+        .product-price{
+            text-align: left;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body style = "font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+
+    {% if search %}
+
+    <div class="products">
+        {% for result in results %}
+        <div  class="product-card">
+            <img class="product-image" src="{{ result.image.url }}" alt="{{ result.name }}">
+            <div class="product-description">
+                <h4>{{ result.name }}</h4>
+                <p>{{ result.description }}</p>
+                <p>Price: {{ result.price }}</p>
+            </div>
+            <div class="product-buttons">
+               
+             
+            </div>
+        </div>
+    {% endfor %} 
+</div> 
+    {%else%}
+               
+
+    <div class="products">
+        {% for result in results %}
+        <div width="50px" height="50px" class="product-card">
+            <img class="product-image" src="{{ result.image.url }}" alt="{{ result.name }}">
+            <div class="product-description">
+                <h4>{{ result.name }}</h4>
+                <p>{{ result.description }}</p>
+                <p>Price: {{ result.price }}</p>
+            </div>
+            <div class="product-buttons">
+               
+             
+            </div>
+        </div>
+    
+    {% endfor %} 
+    </div>
+{% endif %}
+</body>
+</html>
+{% include 'website/footer.html' %}

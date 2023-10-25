@@ -17,6 +17,24 @@ def index(request):
     return render(request, 'website/index.html', {'products': products})
 
 
+def searchresults(request):
+    
+    if request.method == "POST":
+        
+        search = request.POST['search']
+        
+        if search == "\0":
+            results = Product.objects.all()
+            return render(request, 'website/index.html',{'search':search, 'results':results})
+        
+        
+        else:
+            results = Product.objects.filter(name__contains=search)
+            return render(request, 'website/searchresult.html',{'search':search, 'results':results})
+
+    
+        
+
 def register(request):
     form = UserCreationForm(request.POST or None)
     if form.is_valid():

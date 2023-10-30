@@ -2,13 +2,170 @@
 <html>
 <head>
     <title>Product View</title>
+<!--FONT AWESOME FOR SOCIALS-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" >
 
 <style>
 /*CSS STYLING GOES HERE*/
+{margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+font-family: poppins;
+}
+a{
+    text-decoration:none;
 
+}
+ul{
+    list-style:none;
+}
+body{
+    background-color: #f3f3f3;
+}
+/*PRODUCT DETAILS*/
+.product-details{
+    max-width: 1200px;
+    width:90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 50px auto;
+    min-height: 100vh;
 
+}
+.product-img{
+    background-color: #e3e3e3;
+    position:relative;
+
+}
+.product-text{
+    background-color: #ffffff;
+}
+.img-social-bar{
+    position:absolute;
+    left:0px;
+    top:0px;
+    background-color: #ffffff;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 10px;
+    box-shadow: 2px 15px 30px rgba(0,0,0,0.08);
+}
+.img-social-bar a{
+    color: #5e5e5e;
+    margin: 20px 10px;
+    transition: all ease 0.3s;
+
+}
+.img-social-bar a:hover{
+    color: #181818;
+
+}
+.product-text .product-category{
+    color: #5e5e5e;
+    font-size: 0.9rem;
+
+}
+.product-text h3{
+    color: #252525;
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin: 10px 0px;
+}
+.product-text .product-price{
+    font-size: 1.6rem;
+    color: #252525;
+    font-weight: 500;
+}
+.product-text p{
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: #5e5e5e;
+    margin: 30px 0px;
+}
+.product-size-container strong{
+    color: #252525;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #252525;
+}
+.product-size{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.product-size label{
+    font-size: 1.1rem;
+    background-color: #f7f7f7;
+    width:40px;
+    height:40px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    margin-right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+.s-checkbox:checked + .s-label{
+    background-color: #1f2124;
+    color: #ffffff;
+
+}
+.s-checkbox{
+display:none;
+}
 </style>
 </head>
 <body>
 <!--THIS IS THE PRODUCT PAGE-->
+
+<section class="product-page">
+<div class="product-details">
+<!--PRODUCT IMAGE-->
+<div class="product-img"></div>
+<!--SOCIALS-->
+<div class = "img-social-bar">
+    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#"><i class="fa-brands fa-instagram-f"></i></a>
+    <a href="#"><i class="fa-brands fa-twitter-f"></i></a>
+    <a href="#"><i class="fa-brands fa-youtube-f"></i></a>
+</div>
+<!--TEXT-->
+<div class ="product-text"></div>
+<!--CATEGORY-->
+<span class="product-category">WOmen Clothes & Dress</span>
+<!--TITLE-->
+<h3>Cloth Shop Clothes</h3>
+<!--PRICE-->
+<span class = "product-price">${{ product.price }}</span>
+<!--DETAILS-->
+<p>{{ product.description }}
+</br>
+</p>
+<!--SIZE-CONTAINER-->
+<div class="product-size-container">
+    <strong>Select Size:-</strong>
+    <!--SIZE-->
+    <div class="product-size">
+        <!--XL-->
+        <input type="checkbox" class="s-checkbox" id="s-xl">
+        <label for ="s-xl" class ="s-label"> XL</label>
+        <!--S-->
+        <input type="checkbox" class="s-checkbox" id="s-s">
+        <label for ="s-s" class ="s-label" > S</label>
+        <!--M-->
+        <input type="checkbox" class="s-checkbox" id="s-m">
+        <label for ="s-m" class ="s-label" > M</label>
+        <!--L-->
+        <input type="checkbox" class="s-checkbox" id="s-l">
+        <label for ="s-l" class ="s-label" > L</label>
+
+    </div>
+</div>
+</div>
+</section>
 </body>

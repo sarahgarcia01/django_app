@@ -1,4 +1,6 @@
+{% load static %}
 {% include 'website/header.html' %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +88,7 @@
     <!--This if statement will check if there was text typed into the search bar.-->
     {% if search %}
 
-    <div class="products">
+    <div class="products" id="resultsContainer">
         {% for result in results %}
         <div  class="product-card">
             <img class="product-image" src="{{ result.image.url }}" alt="{{ result.name }}">
@@ -115,7 +117,7 @@
     {%else%}
                
 
-    <div class="products">
+    <div class="products" id="resultsContainer">
         {% for result in results %}
         <div width="50px" height="50px" class="product-card">
             <img class="product-image" src="{{ result.image.url }}" alt="{{ result.name }}">
@@ -144,6 +146,7 @@
     {% endfor %} 
     </div>
 {% endif %}
+
 </body>
 </html>
 {% include 'website/footer.html' %}

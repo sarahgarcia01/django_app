@@ -27,9 +27,15 @@ def searchresults(request):
             results = Product.objects.all()
             return render(request, 'website/index.html',{'search':search, 'results':results})
         
-        
         else:
             results = Product.objects.filter(name__contains=search)
+            sort_option = request.GET.get('sort', 'name')
+            # sort_option = request.GET.get('sort', 'relevance')
+            if sort_option == 'name':
+                results = results.order_by('name')
+            elif sort_option == 'price':
+                results = results.order_by('price')
+
             return render(request, 'website/searchresult.html',{'search':search, 'results':results})
 
     

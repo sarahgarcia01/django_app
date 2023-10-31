@@ -8,6 +8,9 @@ from django.contrib.auth import logout as auth_logout
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.template import loader
 from .models import Product, Order
 from django.contrib.auth.decorators import login_required
 from .forms import SearchForm
@@ -18,25 +21,52 @@ def index(request):
 
 
 def searchresults(request):
-    
-    if request.method == "POST":
-        
-        search = request.POST['search']
-        
-        if search == "\0":
-            results = Product.objects.all()
-            return render(request, 'website/index.html',{'search':search, 'results':results})
-        
-        else:
-            results = Product.objects.filter(name__contains=search)
-            sort_option = request.GET.get('sort', 'name')
-            # sort_option = request.GET.get('sort', 'relevance')
-            if sort_option == 'name':
-                results = results.order_by('name')
-            elif sort_option == 'price':
-                results = results.order_by('price')
+    search = request.GET.get('search') or request.POST.get('search')
+    sort_option = request.GET.get('sort', 'name')
 
-            return render(request, 'website/searchresult.html',{'search':search, 'results':results})
+    results = Product.objects.filter(name__contains=search) if search else Product.objects.all()
+    
+    if sort_option == 'name':
+        results = results.order_by('name')
+    elif sort_option == '-name':
+        results = results.order_by('-name')
+    elif sort_option == 'price':
+        results = results.order_by('price')
+    elif sort_option == '-price':
+        results = results.order_by('-price')
+
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        template = loader.get_template('website/sortedresults.html')
+        return HttpResponse(template.render({'results': results}))
+
+    # if request.is_ajax():
+    #     html = render_to_string('website/sortedresults.html', {'results': results})
+    #     return HttpResponse(html)
+
+    return render(request, 'website/searchresult.html', {'search': search, 'results': results})
+
+    
+    
+    #############################################
+    
+    # if request.method == "POST":
+        
+    #     search = request.POST['search']
+        
+    #     if search == "\0":
+    #         results = Product.objects.all()
+    #         return render(request, 'website/index.html',{'search':search, 'results':results})
+        
+    #     else:
+    #         results = Product.objects.filter(name__contains=search)
+    #         sort_option = request.GET.get('sort', 'name')
+    #         # sort_option = request.GET.get('sort', 'relevance')
+    #         if sort_option == 'name':
+    #             results = results.order_by('name')
+    #         elif sort_option == 'price':
+    #             results = results.order_by('price')
+
+    #         return render(request, 'website/searchresult.html',{'search':search, 'results':results})
 
     
         

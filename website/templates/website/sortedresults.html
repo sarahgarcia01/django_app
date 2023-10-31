@@ -1,0 +1,22 @@
+{% for result in results %}
+<div  class="product-card">
+    <img class="product-image" src="{{ result.image.url }}" alt="{{ result.name }}">
+    <div class="product-description">
+        <h4>{{ result.name }}</h4>
+        <p>{{ result.description }}</p>
+        
+    </div>
+    <!--CHANGES START HERE-->
+    <div class = "d-flex justify-content-between align-items-center">
+        <div class = "btn-group">
+            <button type = "button" class="btn btn-sm">View</button>
+            <button type = "button" class="btn btn-sm">Details</button>
+        </div><!--END OF btn-group-->
+        <span class="product-price"> ${{ result.price }}</span>
+    </div><!--END OF d-flex justify-content-between align-items-center-->
+    
+    <div class="product-buttons">
+                
+    </div>
+</div>
+{% endfor %} 

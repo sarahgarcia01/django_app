@@ -83,6 +83,7 @@ body{
     letter-spacing: 1px;
     color: #5e5e5e;
     margin: 30px 0px;
+    position: relative; /*Should fix help button hovering outside*/
 }
 .product-size-container strong{
     color: #252525;
@@ -117,6 +118,44 @@ body{
 }
 .s-checkbox{
 display:none;
+}
+.product-buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 30px 0px;
+    grid-gap: 20px;
+
+}
+.product-buttons a{
+    width: 100%;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight:600;
+    letter-spacing:0.5px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+
+}
+.product-buttons add-cart-btn{
+    background-color:#181818;
+    color: #ffffff;
+    
+}
+.product-buttons add-wishlist-btn{
+    background-color: #f1f1f1;
+    color: #252525;
+}
+.help-btn{
+    position:absolute;
+    right: 20px;
+    bottom: 20px;
+    color: #181818;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-transform: lowercase;
+
 }
 </style>
 </head>
@@ -166,6 +205,14 @@ display:none;
 
     </div>
 </div>
+
+<!--BUTTONS-->
+<div class="product-buttons">
+    <a href="#" class="Add-cart-btn"> Add to Cart</a>
+    <a href="#" class="Add-wishlist-btn">Add to Wishlist</a>
+</div>
+<!--Help & Assistance button functions-->
+    <a href="#" class="help-btn">Need Assistance?</a>
 </div>
 </section>
 </body>

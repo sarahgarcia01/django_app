@@ -32,7 +32,7 @@ def searchresults(request):
             results = Product.objects.filter(name__contains=search)
             return render(request, 'website/searchresult.html',{'search':search, 'results':results})
 
-    
+  
         
 
 def register(request):

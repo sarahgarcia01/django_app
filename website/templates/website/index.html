@@ -93,7 +93,9 @@
         <!--CHANGES START HERE-->
         <div class = "d-flex justify-content-between align-items-center">
             <div class = "btn-group">
-                <a href="productview.html"> <button type = "button" class="btn btn-sm">View</button> </a>
+            <form action="{% url 'productview.html' %}" method ="POST">
+                <input type = "button" class = "btn btn-sm" value = "View">
+            </form>
                 <button type = "button" class="btn btn-sm">Details</button>
             </div><!--END OF btn-group-->
             <span class="product-price"> ${{ product.price }}</span>

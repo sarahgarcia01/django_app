@@ -43,7 +43,7 @@ def register(request):
     return render(request, 'website/register.html', {'form': form})
 
 def productview(request):
-    return render(request,'website/productview.html')
+    return render(request,'website/productview.html', {})
 
 def login(request):
     username = request.POST.get('username')

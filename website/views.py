@@ -14,6 +14,7 @@ from django.template import loader
 from .models import Product, Order
 from django.contrib.auth.decorators import login_required
 from .forms import SearchForm
+#from django.contrib import messages
 
 def index(request):
     products = Product.objects.all()
@@ -94,7 +95,8 @@ def login(request):
     
 def logout(request):
     auth_logout(request)
-    return redirect('index')
+   # messages.success(request, ("You Have Successfully Logged Out"))
+    return redirect('homepage')
 
 def search_view(request):
     form = SearchForm(request.GET)

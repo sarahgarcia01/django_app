@@ -2,17 +2,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>productview</title>
+    
 <!--FONT AWESOME FOR SOCIALS-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>productview</title>
 <style>
 /*CSS STYLING GOES HERE*/
-/*{margin: 0px;
+*{
+margin: 0px;
 padding: 0px;
 box-sizing: border-box;
 font-family: poppins;
-}*/
+}
 a{
     text-decoration:none;
 
@@ -25,7 +29,7 @@ body{
 }
 /*PRODUCT DETAILS*/
 .product-details{
-    max-width: 1200px;
+    max-width: 1600px;
     width:90%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -216,5 +220,14 @@ display:none;
     <a href="#" class="help-btn">Need Assistance?</a>
 </div>
 </section>
+<script
+			  src="https://code.jquery.com/jquery-3.7.1.js"
+			  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+			  crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $('.s-checkbox').on('change', function(){
+            $('.s-checkbox').not(this).prop('checked', false);
+        })
+    </script>
 </body>
 {% include 'website/footer.html' %}

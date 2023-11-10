@@ -78,7 +78,9 @@
                 display: block;
             }
 
-           
+           .category-menu{
+                transform: translate(-80%,-60%);
+           }
            
         </style>
     </head>
@@ -114,6 +116,19 @@
                     
                     
                   </div>
+                </li>
+
+                <li class="dropdown category-menu" >
+                    <a style="color:white;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Shop By Category
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'categoryresults' 'Shirt' %}">T-Shirts</a>
+                        <a href="{% url 'categoryresults' 'Longsleeve' %}">Longsleeves</a>
+                        <a href="{% url 'categoryresults' 'Hoodie' %}">Hoodies</a>
+                        <a href="{% url 'categoryresults' 'Pant' %}">Pants</a>
+                        <a href="{% url 'categoryresults' 'Shoe' %}">Shoes</a>
+                    </div>
                 </li>
             </ul>
     

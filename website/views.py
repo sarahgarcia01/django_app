@@ -106,3 +106,17 @@ def search_view(request):
     else:
         results = []
     return render(request, 'search_results.html', {'form': form, 'results': results})
+
+def categoryresults(request, category):
+    if category == 'Pant':
+        pants = Product.objects.filter(name__contains='Pants').values()
+        jeans = Product.objects.filter(name__contains='Jeans').values()
+        results = pants | jeans
+    elif category == 'Shoe':
+        shoes = Product.objects.filter(name__contains=category).values()
+        boots = Product.objects.filter(name__contains='Boots').values()
+        results = shoes | boots
+    else:
+        results = Product.objects.filter(name__contains=category).values()
+    return render(request, 'website/categoryresults.html', {'results': results, 'category': category})
+    

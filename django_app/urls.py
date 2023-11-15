@@ -29,6 +29,13 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('searchresults/', views.searchresults, name='searchresults'),
     path('categoryresults/<str:category>/', views.categoryresults, name='categoryresults'),
+    path('shopping_cart/', views.shopping_cart, name='shopping_cart'),
+    path('add_to_cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
+    path('update_cart/<int:product_id>/', views.update_cart, name='update_cart'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('place_order/', views.place_order, name='place_order'),
+    path('order_complete/', views.order_complete, name='order_complete'),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

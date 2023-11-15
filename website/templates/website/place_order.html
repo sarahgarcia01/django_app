@@ -1,0 +1,21 @@
+{% include 'website/header.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Place Order</title>
+    </head>
+<body style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+    <h2>Order Confirmation</h2>
+
+        <p>Thank you for your purchase! Here is your order confirmation.</p>
+
+        <h3>Order Details</h3>
+        <p>Order Number: {{ order.id }}</p>
+        <p>Order Date: {{ order.date }}</p>
+        <p>Shipping Address: {{order.shipping_address }}</p>
+        <p>Payment Method: {{ order.get_payment_method_display}}</p>
+        <p>Order Total: ${{ order.get_cart_total }}</p>
+
+</body>
+</html>
+{% include 'website/footer.html' %}

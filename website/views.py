@@ -42,8 +42,16 @@ def register(request):
         return redirect('login')
     return render(request, 'website/register.html', {'form': form})
 
-def productview(request):
-    return render(request,'website/productview.html', {})
+def productview(request, product_id):
+    # Retrieve the product parameters from the request's GET parameters
+    image_url = request.GET.get('image_url', '')
+    name = request.GET.get('name', '')
+    price = request.GET.get('price', '')
+    description = request.GET.get('description', '')
+    availability = request.GET.get('availability', '')
+
+    return render(request, 'website/productview.html', {'product_id': product_id, 'image_url': image_url, 'name': name, 'price': price, 'description': description, 'availability': availability})
+
 
 def login(request):
     username = request.POST.get('username')

@@ -88,19 +88,19 @@
         <div class="product-description">
             <h4>{{ product.name }}</h4>
             <p>{{ product.description }}</p>
-        <!-- <p>Price: {{ product.price }}</p> --><!--THIS HAS BEEN COMMENTED OUT FOR RECENT CHANGE-->
+<!-- <p>Price: {{ product.price }}</p> --><!--THIS HAS BEEN COMMENTED OUT FOR RECENT CHANGE-->
 
         <!--CHANGES START HERE-->
         <div class = "d-flex justify-content-between align-items-center">
-            <div class = "btn-group">
-                <a href="{% url 'productview' %}" class="btn btn-sm">View</a></button>
-                <button type = "button" class="btn btn-sm">Details</button>
-            </div><!--END OF btn-group-->
-            <span class="product-price"> ${{ product.price }}</span>
+                    <div class = "btn-group">
+                        <a href="{% url 'productview' product.id %}?image_url={{ product.image.url }}&name={{ product.name|urlencode }}&price={{ product.price }}&description={{ product.description|urlencode }}&availability={{ product.availability|urlencode }}" class="btn btn-sm">View</a>
+                    <button type = "button" class="btn btn-sm">Details</button>
+                    </div><!--END OF btn-group--> 
+        <span class="product-price"> ${{ product.price }}</span>
         </div><!--END OF d-flex justify-content-between align-items-center-->
         </div>
         <div class="product-buttons">
-           
+
         </div>
         </div>
     {% endfor %} 

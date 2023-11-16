@@ -28,7 +28,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('logout/', views.logout, name='logout'),
     path('searchresults/', views.searchresults, name='searchresult'),
-    path('productview/', views.productview, name='productview'),
+    path('product/<int:product_id>/', views.productview, name='productview'),
     
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -153,7 +153,7 @@ body{
     text-decoration: underline;
     text-transform: lowercase;
 }
-/*
+/*THIS IS FOR SWIPER IMPLEMENTATION, HOWEVER THERE ARE NOT ENOUGH IMAGES FOR IT
 .mySwiper{
     height: 100%;
     width: 100%;
@@ -222,18 +222,13 @@ body{
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--==Title============================-->
     <title>Product Page HTML</title>
-    <!--==CSS==============================-->
-    <link rel="stylesheet" href="css/style.css"/>
-    <!--==Poppins-font=====================-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!--==Using-Font-Awesome-for-Icons=====-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-    <!-- Link Swiper's CSS -->
+    <!-- Link for Swiper's CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
@@ -258,17 +253,20 @@ body{
             </div>
         </div>
         
-        <!--**Text************************-->
+        <!--This includes the text of the product-->
         <div class="product-text">
-            <!--category-->
-            <span class="product-category">Women Clothes & Dresses</span>
+            <!--The category would be here, but for now the name will be a placeholder-->
+            <span class="product-category">{{name}}</span>
+            <!--This will display the name of the product-->
             <h3><p>{{ name }}</p></h3>
+            <!--This displays the price of the product-->
             <span class="product-price"><p>Price: ${{ price }}</p></span>
+            <!--This displays the description of the product name-->
             <p><p>{{ description }}</p>
                 <br/>
                 
             </p>
-            <!--size-->
+            <!--This is the size container, containing a list of sizes to choose from-->
             <div class="product-size-container">
                 <strong>Select Size:-</strong>
                 <div class="product-size">
@@ -291,54 +289,30 @@ body{
                 </div>
             </div>
 
-            <!--btn-->
+            <!--This includes the product buttons-->
             <div class="product-button">
                 <a href="#" class="add-bag-btn">Add To Bag</a>
                 <a href="#" class="add-wishlist-btn">Add To Wishlist</a>
             </div>
-            <!--help-btn-->
+            <!--This is the help/assistance button, although the referral link is not working as of now-->
             <a href="#" class="help-btn">Need Any Help?</a>
         </div>
     </div>
     </section>
 
-    <!--==Jquery===========================-->
+    <!--Jquery Scripts-->
     <script
   src="https://code.jquery.com/jquery-3.6.1.js"
   integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
   crossorigin="anonymous"></script>
 
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
-    <!-- Initialize Swiper -->
+
+    <!--This is the script for button selection-->
     <script>
-      var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        spaceBetween: 10,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        breakpoints: {
-          450: {
-            slidesPerView: 2,
-            spaceBetween: 0,
-          },
-          820: {
-            slidesPerView: 1,
-            spaceBetween: 0,
-          },
-          1024: {
-            slidesPerView: 2,
-            spaceBetween:0,
-          },
-        },
-      });
-
-
-      $('.s-checkbox').on('change', function() {
-		    $('.s-checkbox').not(this).prop('checked', false);  
+$('.s-checkbox').on('change', function() {
+$('.s-checkbox').not(this).prop('checked', false);  
 		});
     </script>
 </body>

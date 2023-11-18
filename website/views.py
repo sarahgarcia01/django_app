@@ -11,23 +11,24 @@ from decimal import Decimal
 from django.contrib.auth import get_user
 from django.shortcuts import get_object_or_404
 from .forms import SearchForm
-from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
-
-
-
-
-
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login as auth_login
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.template import loader
-from django.contrib.auth.decorators import login_required
 from .forms import SearchForm
 from datetime import datetime
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
+from django.template.loader import render_to_string
+from django.contrib import messages
+from django.db.models import Q
+
 
 
 def index(request):
@@ -95,7 +96,7 @@ def shopping_cart(request):
 
     # check if user is logged in
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('register')
     
     # get the user's cart from session
     shopping_cart = request.session.get('shopping_cart', {})
@@ -110,7 +111,7 @@ def shopping_cart(request):
         # get product from database
         product = Product.objects.get(id=product_id)
         # calculate total cost for product
-        subtotal = quantity * product.price
+        subtotal = product.price * quantity
         # add subtotal to total cost
         total_cost += subtotal
 
@@ -128,6 +129,7 @@ def shopping_cart(request):
     context = {
     'cart_items': cart_items,
     'total_cost': total_cost,
+    'tax': tax,
     'total_after_tax': total_after_tax,
     }
 
@@ -151,7 +153,7 @@ def update_cart(request, product_id):
     # get the product from the database
     product = Product.objects.get(id=product_id)
     # get the quantity from the form
-    quantity = int(request.POST.get['quantity'])
+    quantity = int(request.POST['quantity'])
     # get shopping cart from session
     shopping_cart = request.session.get('shopping_cart', {})
     # update the quantity
@@ -244,7 +246,7 @@ def place_order(request):
         'total': calculate_tax(total) + total,
         'total_quantity': total_quantity,
         'shipping_address': shipping_address,
-        'order_date': datetime.now(),
+        'order_date': order.date,
         'payment_method': payment_method,
         'cart_items': cart_items
     }

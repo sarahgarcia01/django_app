@@ -34,7 +34,7 @@ class OrderTestCase(TestCase):
         self.assertIsInstance(response, HttpResponseRedirect)
         self.assertEqual(response.status_code, 302)
 
-        response = self.client.get(response.url)
+        response ,= self.client.get(response.url)
         self.assertEqual(response.status_code, 200)
 
         order = Order.objects.get(user=self.user)

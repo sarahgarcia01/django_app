@@ -2,20 +2,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Order Complete</title>
+    <title>Order Summary</title>
     </head>
-<body style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-    <h2>Order Confirmation</h2>
 
-        <p>Thank you for your purchase! Here is your order confirmation.</p>
+<body style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+
+    <h2>Order Summary</h2>
+
+        <p>Thank you for your purchase! Here is your order summary.</p>
 
         <h3>Order Details</h3>
-        <p>Order Number: {{ order.id }}</p>
-        <p>Order Date: {{ order.date }}</p>
-        <p>Shipping Address: {{order.shipping_address }}</p>
-        <p>Payment Method: {{ order.get_payment_method_display}}</p>
-        <p>Order Total: ${{ order.get_cart_total }}</p>
+        <p><strong>Date:</strong>{{ order_date }}</p>
+        <p><strong>Shipping Address:</strong> {{ shipping_address }}</p>
+        <p><strong>Payment Method:</strong> {{ payment_method }}</p>
+        <p><strong>Total Price:</strong> ${{ total_cost }}</p>
 
-</body>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.product.price }}</td>
+                    <td>{{ item.subtotal }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
 </html>
 {% include 'website/footer.html' %}

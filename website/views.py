@@ -223,7 +223,7 @@ def place_order(request):
 
     shopping_cart = request.session.get('shopping_cart', {})
 
-    total = sum(Product.objects.get(id=product_id).price * quantity for product_id, quantity in shopping_cart.items())
+    total_price = sum(Product.objects.get(id=product_id).price * quantity for product_id, quantity in shopping_cart.items())
     total_quantity = sum(quantity for quantity in shopping_cart.values())
 
     for product_id, quantity in shopping_cart.items():
@@ -232,7 +232,7 @@ def place_order(request):
             user = request.user,
             product = product,
             quantity = quantity,
-            total = total,
+            total_price = total_price,
             date = datetime.now(),
             shipping_address = shipping_address,
             payment_method = payment_method
@@ -243,7 +243,7 @@ def place_order(request):
     request.session['shopping_cart'] = {}
 
     context = {
-        'total': calculate_tax(total) + total,
+        'total': calculate_tax(total_price) + total_price,
         'total_quantity': total_quantity,
         'shipping_address': shipping_address,
         'order_date': order.date,
@@ -264,6 +264,16 @@ def register(request):
         form.save()
         return redirect('login')
     return render(request, 'website/register.html', {'form': form})
+
+def productview(request, product_id):
+    # Retrieve the product parameters from the request's GET parameters
+    image_url = request.GET.get('image_url', '')
+    name = request.GET.get('name', '')
+    price = request.GET.get('price', '')
+    description = request.GET.get('description', '')
+    availability = request.GET.get('availability', '')
+
+    return render(request, 'website/productview.html', {'product_id': product_id, 'image_url': image_url, 'name': name, 'price': price, 'description': description, 'availability': availability})
 
 
 def login(request):

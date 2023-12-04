@@ -24,7 +24,6 @@
             background-color: #f8f5f2;
             text-align: center;
             padding: 20px;
-            margin: auto;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
@@ -43,9 +42,9 @@
         .product-price{
             text-align: left;
             font-weight: bold;
+            transition: .6s; /*ADDED FEATURE*/
         }
-
-        /* START OF RESPONSIVE CSS*/
+/* START OF RESPONSIVE CSS*/
 
         .btn-group .btn{
             background: #fe6d38;
@@ -65,6 +64,9 @@
         .product-card:hover .product-price{
             animation: pulse .5s ease-in-out infinite;
         }
+
+        .button-wrapper {text-align:center;display:inline-block; margin:10px;}
+
         @keyframes pulse{
             0%{
                 transform:scale(1);
@@ -77,8 +79,6 @@
             }
         }
 /*END OF RESPONSIVE CSS*/
-
-
     </style>
 </head>
 

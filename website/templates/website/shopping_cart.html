@@ -1,0 +1,78 @@
+{% include 'website/header.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <style>
+        body {
+                margin: 0;
+                background-color: #f8f5f2;
+
+            }
+
+        .container {
+                text-align: left;
+                margin-top: 20px;
+        }
+
+
+
+          
+    </style>
+</head>
+
+<body style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+   <div class="container">
+    <h1>Shopping Cart</h1>
+    
+    {% if cart_items %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>
+                    <form action="{% url 'update_cart' item.product.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}">
+                        <input type="submit" value="Update">
+                    </form>
+                </td>
+                <td>{{ item.product.price }}</td>
+                <td>{{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+<h3>Total</h3>
+<p>${{ total_cost }}</p>
+
+<h3>Tax (6.25%)</h3>
+<p>${{ tax }}</p>
+
+<h3>Grand Total</h3>
+<p>${{ total_after_tax }}</p>
+
+<div class="checkout">
+    <a href="{% url 'checkout' %}" class="btn btn-sm btn-success">Checkout</a>
+
+
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}
+
+
+   </div>
+</body>
+</html>
+{% include 'website/footer.html' %}

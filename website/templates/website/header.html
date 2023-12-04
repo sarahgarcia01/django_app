@@ -8,10 +8,8 @@
                 margin: 0;
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 background-color: #232323;
-                font-display: block;
                 color: #f8f5f2;
                 padding:20px;
-                text-align: center;
             }
 
             .search-bar{
@@ -19,12 +17,12 @@
                 margin-left: 10px;
                 margin-right: 10px;
                 margin-top: auto;
-                position: relative;
-                top: 50%;
+                top: 100%;
                 transform: translateY(-120%);
 
             }
 
+         
         
             li{
                 float: right;
@@ -59,7 +57,6 @@
                 position: absolute;
                 background-color: #078080;
                 min-width: 160px;
-            
                 z-index: 1;
             }
 
@@ -78,9 +75,7 @@
                 display: block;
             }
 
-           .category-menu{
-                transform: translate(-80%,-60%);
-           }
+           
            
         </style>
     </head>
@@ -91,11 +86,13 @@
         
         <div class="header">
             <h1>ClothShop</h1>
-            <p>one stop fashion shop</p>
-           
+            
+
+             
 
             <ul>
                 <li><a href="{% url 'homepage' %}">Home</a></li>
+                <li><a href="{% url 'shopping_cart' %}">Shopping Cart</a></li>
             
                 <li class="dropdown">
                   <a href="javascript:void(0)" class="dropbtn">Account</a>
@@ -131,9 +128,13 @@
                     </div>
                 </li>
             </ul>
+
+            
     
 
         </div>
+
+        
 
 
             <div class = "search-bar">

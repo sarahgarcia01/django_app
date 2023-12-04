@@ -20,11 +20,11 @@
         }
 
         .product-card{
+            margin: auto;
             background-attachment: fixed;
             background-color: #f8f5f2;
             text-align: center;
             padding: 20px;
-            margin: auto;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
@@ -43,9 +43,9 @@
         .product-price{
             text-align: left;
             font-weight: bold;
+            transition: .6s; /*ADDED FEATURE*/
         }
-
-        /* START OF RESPONSIVE CSS*/
+/* START OF RESPONSIVE CSS*/
 
         .btn-group .btn{
             background: #fe6d38;
@@ -65,6 +65,9 @@
         .product-card:hover .product-price{
             animation: pulse .5s ease-in-out infinite;
         }
+
+        .button-wrapper {text-align:center;display:inline-block; margin:10px;}
+
         @keyframes pulse{
             0%{
                 transform:scale(1);
@@ -76,9 +79,7 @@
                 transform:scale(1);
             }
         }
-/*END OF RESPONSIVE CSS*/
-
-
+/*END OF RESPONSIVE CSS*/ 
     </style>
 </head>
 
@@ -95,11 +96,22 @@
             </div>
             <!--CHANGES START HERE-->
             <div class = "d-flex justify-content-between align-items-center">
+        
                 <div class = "btn-group">
-                    <button type = "button" class="btn btn-sm">View</button>
-                    <button type = "button" class="btn btn-sm">Details</button>
+                    <a href="{% url 'productview' result.id %}?image_url={{ result.image.url }}&name={{ result.name|urlencode }}&price={{ result.price }}&description={{ result.description|urlencode }}&availability={{ result.availability|urlencode }}" class="btn btn-sm">View</a>
+                   
                 </div><!--END OF btn-group-->
+                <div class="buttonwrapper">
+                <div class="availability">
+                        {{result.availability}}
+                </div>
                 <span class="product-price"> ${{ result.price }}</span>
+                
+                {% if result.availability != "Out of Stock" %}
+                    <a href="{% url 'add_to_cart' result.id %}" class="btn btn-sm btn-success">Add to Cart</a>
+                
+                    {% endif %}
+            </div>        
             </div><!--END OF d-flex justify-content-between align-items-center-->
             
             <div class="product-buttons">

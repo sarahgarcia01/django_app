@@ -63,6 +63,9 @@
         .product-card:hover .product-price{
             animation: pulse .5s ease-in-out infinite;
         }
+
+        .button-wrapper {text-align:center;display:inline-block; margin:10px;}
+
         @keyframes pulse{
             0%{
                 transform:scale(1);
@@ -87,20 +90,32 @@
         <div class="product-description">
             <h4>{{ product.name }}</h4>
             <p>{{ product.description }}</p>
-        <!-- <p>Price: {{ product.price }}</p> --><!--THIS HAS BEEN COMMENTED OUT FOR RECENT CHANGE-->
+<!-- <p>Price: {{ product.price }}</p> --><!--THIS HAS BEEN COMMENTED OUT FOR RECENT CHANGE-->
 
         <!--CHANGES START HERE-->
         <div class = "d-flex justify-content-between align-items-center">
+        
             <div class = "btn-group">
-                <button type = "button" class="btn btn-sm">View</button>
-                <button type = "button" class="btn btn-sm">Details</button>
+                <a href="{% url 'productview' product.id %}?image_url={{ product.image.url }}&name={{ product.name|urlencode }}&price={{ product.price }}&description={{ product.description|urlencode }}&availability={{ product.availability|urlencode }}" class="btn btn-sm">View</a>
+                
             </div><!--END OF btn-group-->
+            <div class="buttonwrapper">
+            <div class="availability">
+                    {{product.availability}}
+            </div>
             <span class="product-price"> ${{ product.price }}</span>
+            
+            {% if product.availability != "Out of Stock" %}
+                <a href="{% url 'add_to_cart' product.id %}" class="btn btn-sm btn-success">Add to Cart</a>
+            
+                {% endif %}
+        </div>        
         </div><!--END OF d-flex justify-content-between align-items-center-->
         </div>
         <div class="product-buttons">
-           
+
         </div>
+
         </div>
     {% endfor %} 
 </div>

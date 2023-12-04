@@ -1,3 +1,4 @@
+
 {% for result in results %}
 <div  class="product-card">
     <img class="product-image" src="{{ result.image.url }}" alt="{{ result.name }}">
@@ -8,15 +9,27 @@
     </div>
     <!--CHANGES START HERE-->
     <div class = "d-flex justify-content-between align-items-center">
+        
         <div class = "btn-group">
-            <button type = "button" class="btn btn-sm">View</button>
-            <button type = "button" class="btn btn-sm">Details</button>
+            <a href="{% url 'productview' result.id %}?image_url={{ result.image.url }}&name={{ result.name|urlencode }}&price={{ result.price }}&description={{ result.description|urlencode }}&availability={{ result.availability|urlencode }}" class="btn btn-sm">View</a>
+            
         </div><!--END OF btn-group-->
+        <div class="buttonwrapper">
+        <div class="availability">
+                {{result.availability}}
+        </div>
         <span class="product-price"> ${{ result.price }}</span>
-    </div><!--END OF d-flex justify-content-between align-items-center-->
+        
+        {% if result.availability != "Out of Stock" %}
+            <a href="{% url 'add_to_cart' result.id %}" class="btn btn-sm btn-success">Add to Cart</a>
+        
+            {% endif %}
+    </div>        
+    </div>
     
     <div class="product-buttons">
                 
     </div>
 </div>
 {% endfor %} 
+

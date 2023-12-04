@@ -302,7 +302,7 @@ def search_view(request):
     else:
         results = []
     return render(request, 'search_results.html', {'form': form, 'results': results})
-
+ 
 def categoryresults(request, category):
     if category == 'Pant':
         pants = Product.objects.filter(name__contains='Pants').values()

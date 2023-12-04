@@ -12,7 +12,7 @@
         
         <div class = "btn-group">
             <a href="{% url 'productview' result.id %}?image_url={{ result.image.url }}&name={{ result.name|urlencode }}&price={{ result.price }}&description={{ result.description|urlencode }}&availability={{ result.availability|urlencode }}" class="btn btn-sm">View</a>
-           
+            
         </div><!--END OF btn-group-->
         <div class="buttonwrapper">
         <div class="availability">
